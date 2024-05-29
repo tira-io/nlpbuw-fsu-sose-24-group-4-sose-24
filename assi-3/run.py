@@ -3,16 +3,16 @@ import pandas as pd
 from tira.rest_api_client import Client
 from tira.third_party_integrations import get_output_directory
 import joblib
-from levenshtein import calculate_levenshtein_distance
+from submission.levenshtein import calculate_levenshtein_distance
 
 if __name__ == "__main__":
-    # Load the data from TIRA platform
-    tira = Client()
-    df = tira.pd.inputs("nlpbuw-fsu-sose-24", "paraphrase-identification-validation-20240515-training").set_index("id")
 
-    # Load the trained model and feature names
+    tira = Client()
     model = joblib.load('model.pkl')
     feature_names = joblib.load('features.pkl')
+
+    # Load the data from TIRA platform
+    df = tira.pd.inputs("nlpbuw-fsu-sose-24", "paraphrase-identification-validation-20240515-training").set_index("id")
 
     # Compute the Levenshtein distance
     df['levenshtein_distance'] = calculate_levenshtein_distance(df, 'sentence1', 'sentence2')
