@@ -3,7 +3,7 @@ import pandas as pd
 from tira.rest_api_client import Client
 from tira.third_party_integrations import get_output_directory
 import joblib
-from submission.levenshtein import calculate_levenshtein_distance
+from levenshtein import calculate_levenshtein_distance
 
 if __name__ == "__main__":
 
