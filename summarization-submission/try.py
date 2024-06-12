@@ -43,7 +43,7 @@ def generate_summary(text, num_sentences=2):
     sentence_scores = similarity_matrix.sum(axis=1)
     ranked_sentences = [sentences[i] for i in sentence_scores.argsort()[-num_sentences:][::-1]]
 
-    # Join the top ranked sentences to form the summary
+    # form the summary
     return " ".join(ranked_sentences)
 
 if __name__ == "__main__":
